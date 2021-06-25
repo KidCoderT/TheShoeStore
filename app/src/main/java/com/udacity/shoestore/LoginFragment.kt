@@ -25,13 +25,17 @@ class LoginFragment : Fragment() {
         )
 
         binding.loginButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+            nextScreen(view)
         }
 
         binding.registerButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_loginFragment_to_welcomeFragment)
+            nextScreen(view)
         }
 
         return binding.root
+    }
+
+    private fun nextScreen(view:View) {
+        view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
     }
 }

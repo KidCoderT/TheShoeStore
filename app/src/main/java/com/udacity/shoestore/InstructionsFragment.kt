@@ -1,17 +1,16 @@
 package com.udacity.shoestore
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
+import com.udacity.shoestore.databinding.FragmentInstructionsBinding
 import com.udacity.shoestore.databinding.FragmentWelcomeBinding
 
-class WelcomeFragment : Fragment() {
-    private lateinit var binding: FragmentWelcomeBinding
+class InstructionsFragment : Fragment() {
+    private lateinit var binding: FragmentInstructionsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,14 +18,10 @@ class WelcomeFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_welcome,
+            R.layout.fragment_instructions,
             container,
             false
         )
-
-        binding.continueButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToInstructionsFragment())
-        }
 
         return binding.root
     }

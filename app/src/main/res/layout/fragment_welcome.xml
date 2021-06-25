@@ -2,7 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    
+
+    <!--  This is the welcome page .
+        This page uses a constraint layout because making this with
+        Linear layout will be a terrible idea.
+        1. There would multiple margins being used and it would still be
+           really hard to center both vertically and horizontaly as I also
+           have two other object that need to be on top and button
+        2. Its much easier to position with the constraint layout
+    -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/welcome_screen"
         android:layout_width="match_parent"
@@ -13,7 +22,7 @@
         <View
             android:id="@+id/wave_decoration_drawable"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/wave_height"
             android:background="@drawable/wave"
             android:rotationY="180"
             app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +32,7 @@
         <View
             android:id="@+id/wave_decoration2_drawable"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/wave_height"
             android:background="@drawable/wave_"
             android:rotationY="180"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -31,11 +40,11 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="76dp"
-            android:text="Welcome"
+            android:layout_marginStart="@dimen/space_to_right"
+            android:text="@string/welcome_title"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/wave_decoration2_drawable"
@@ -44,29 +53,29 @@
             app:layout_constraintVertical_bias="0.354" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/subtitle_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Lets get your foot into heaven!"
+            android:layout_marginTop="@dimen/regular_margin"
+            android:text="@string/tag_line"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintStart_toStartOf="@+id/title_text"
+            app:layout_constraintTop_toBottomOf="@+id/title_text" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/continue_button"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginStart="76dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="@dimen/space_to_right"
+            android:layout_marginTop="@dimen/regular_margin"
             android:background="#0099ff"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:text="Continue"
+            android:text="@string/continue_"
             android:textColor="#fff"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/subtitle_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

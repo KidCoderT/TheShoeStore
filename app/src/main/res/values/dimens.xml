@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="wave_height">100dp</dimen>
+    <dimen name="space_to_right">76dp</dimen>
+    <dimen name="regular_margin">16dp</dimen>
+</resources>
