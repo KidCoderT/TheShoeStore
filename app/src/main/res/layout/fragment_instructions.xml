@@ -12,12 +12,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".InstructionsFragment">
+        android:layout_height="match_parent">
 
         <View
-            android:id="@+id/wave_decoration_drawable"
+            android:id="@+id/wave_decoration2_drawable"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/wave_height"
             android:background="@drawable/wave"
@@ -29,21 +27,21 @@
             android:id="@+id/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="144dp"
             android:text="@string/instructions_title"
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/body_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/wave_decoration_drawable" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.776" />
 
         <TextView
             android:id="@+id/body_text"
             android:layout_width="337dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:text="@string/instructions"
             android:textAlignment="center"
@@ -52,8 +50,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_text"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/continue_button"
@@ -72,6 +69,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/body_text"
             app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/wave_decoration_drawable"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/wave_height"
+            android:background="@drawable/wave"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:rotationX="180"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
