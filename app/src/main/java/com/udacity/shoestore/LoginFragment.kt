@@ -27,27 +27,21 @@ class LoginFragment : Fragment() {
         )
 
         binding.loginButton.setOnClickListener { view: View ->
-            val emailFieldText = binding.emailField.text
-            val passwordFieldText = binding.passwordField.text
-
-            val isNull = emailFieldText.equals("") || !passwordFieldText.equals("")
-
-            var errorText = ""
-
-            if (emailFieldText.equals("")) {
-                binding.errorText.visibility = View.VISIBLE
-                errorText = "$errorText*email cannot be nullable."
-            }
-
-            if (passwordFieldText.equals("")) {
-                binding.errorText.visibility = View.VISIBLE
-                errorText = "$errorText *password cannot be nullable."
-            }
-
-            binding.errorText.text = errorText
-
-            if (isNull) {
-                view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+            when (binding.emailField.text.isNotBlank() && binding.passwordField.text.isNotBlank()) {
+                true -> {
+                    // update your isLoggedIn variable
+                    view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+                }
+                false -> {
+                    var errorText = ""
+                    if (binding.emailField.text.isBlank()) {
+                        errorText = "$errorText*email cannot be null."
+                    }
+                    if (binding.passwordField.text.isBlank()) {
+                        errorText = "$errorText *password cannot be null."
+                    }
+                    binding.errorText.text = errorText
+                }
             }
         }
 
