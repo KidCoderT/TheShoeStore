@@ -12,22 +12,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:theme="@style/AppTheme.NoActionBar"
         android:layout_height="match_parent">
-
-        <View
-            android:id="@+id/wave_decoration2_drawable"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/wave_height"
-            android:background="@drawable/wave"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:text="@string/instructions_title"
             android:textAlignment="center"
             android:textSize="30sp"
@@ -36,7 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.776" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/body_text"
@@ -50,6 +41,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,10 +68,10 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/wave_height"
             android:background="@drawable/wave"
+            android:rotationX="180"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:rotationX="180"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

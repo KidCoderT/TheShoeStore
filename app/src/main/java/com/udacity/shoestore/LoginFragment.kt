@@ -14,6 +14,7 @@ import timber.log.Timber
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
+    lateinit var preferences: MyPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,33 +27,36 @@ class LoginFragment : Fragment() {
             false
         )
 
+        preferences = MyPreferences(requireActivity())
+
         binding.loginButton.setOnClickListener { view: View ->
-            when (binding.emailField.text.isNotBlank() && binding.passwordField.text.isNotBlank()) {
-                true -> {
-                    // update your isLoggedIn variable
-                    view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
-                }
-                false -> {
-                    var errorText = ""
-                    if (binding.emailField.text.isBlank()) {
-                        errorText = "$errorText*email cannot be null."
-                    }
-                    if (binding.passwordField.text.isBlank()) {
-                        errorText = "$errorText *password cannot be null."
-                    }
-                    binding.errorText.text = errorText
-                }
-            }
+            nullCheck(view)
         }
 
         binding.registerButton.setOnClickListener { view: View ->
-            nextScreen(view)
+            nullCheck(view)
         }
 
         return binding.root
     }
 
-    private fun nextScreen(view:View) {
-        view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+    private fun nullCheck(view: View) {
+        when (binding.emailField.text.isNotBlank() && binding.passwordField.text.isNotBlank()) {
+            true -> {
+                preferences.setLoginState(true)
+                view.findNavController()
+                    .navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+            }
+            false -> {
+                var errorText = ""
+                if (binding.emailField.text.isBlank()) {
+                    errorText = "$errorText*email cannot be null."
+                }
+                if (binding.passwordField.text.isBlank()) {
+                    errorText = "$errorText *password cannot be null."
+                }
+                binding.errorText.text = errorText
+            }
+        }
     }
 }

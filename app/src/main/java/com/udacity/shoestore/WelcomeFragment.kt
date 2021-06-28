@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.udacity.shoestore.databinding.FragmentWelcomeBinding
 
@@ -24,10 +25,17 @@ class WelcomeFragment : Fragment() {
             false
         )
 
-        binding.continueButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToInstructionsFragment())
-        }
+        binding.continueButton.setOnClickListener(
+            Navigation.createNavigateOnClickListener(
+                WelcomeFragmentDirections.actionWelcomeFragmentToInstructionsFragment()
+            )
+        )
 
         return binding.root
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("login_state", true)
     }
 }
