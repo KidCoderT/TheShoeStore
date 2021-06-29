@@ -1,16 +1,15 @@
 package com.udacity.shoestore
 
+import android.R.attr
 import android.os.Bundle
 import android.view.*
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
-import java.security.AccessController.getContext
 
 
 class ShoeListFragment : Fragment() {
@@ -66,12 +65,17 @@ class ShoeListFragment : Fragment() {
 
     private fun newShoe(name: String, company: String, size: String, description: String) {
         val linearLayout: LinearLayout = binding.shoeListingsContainer
-        val constraintLayout =
-            View.inflate(context, R.layout.shoe_list_item, null) as ConstraintLayout
-        constraintLayout.findViewById(R.id.name) = name
-        constraintLayout.findViewById(R.id.company) = company
-        constraintLayout.findViewById(R.id.size) = "$size size"
-        constraintLayout.findViewById(R.id.description) = description
-        linearLayout.addView(constraintLayout)
+        val view: View = layoutInflater.inflate(R.layout.shoe_list_item, null)
+
+        val nameView: TextView = view.findViewById(R.id.name)
+        nameView.text = name
+        val companyView: TextView = view.findViewById(R.id.company)
+        companyView.text = company
+        val sizeTextView: TextView = view.findViewById(R.id.size)
+        sizeTextView.text = "$size size"
+        val descriptionTextView: TextView = view.findViewById(R.id.description)
+        descriptionTextView.text = description
+
+        linearLayout.addView(view)
     }
 }
