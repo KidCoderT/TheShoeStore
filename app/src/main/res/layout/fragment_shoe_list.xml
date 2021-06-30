@@ -26,13 +26,15 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
+            android:clickable="true"
             android:background="@drawable/round_bg_dark"
             android:backgroundTint="@color/colorPrimaryDark"
             android:src="@drawable/ic_baseline_add_24"
             app:fabCustomSize="70dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:maxImageSize="60dp" />
+            app:maxImageSize="60dp"
+            android:focusable="true" />
 
 
         <ScrollView

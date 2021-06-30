@@ -7,9 +7,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
+import timber.log.Timber
 
 
 class ShoeListFragment : Fragment() {
@@ -30,7 +32,10 @@ class ShoeListFragment : Fragment() {
 
         preferences = MyPreferences(requireActivity())
         loginState = preferences.getLoginState()
-        newShoe("Nike Boys", "Tejas Cop.", "10", "Amazing Shoes. The best!")
+
+        binding.fab.setOnClickListener { view:View ->
+            view.findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
+        }
 
         setHasOptionsMenu(true)
         return binding.root
