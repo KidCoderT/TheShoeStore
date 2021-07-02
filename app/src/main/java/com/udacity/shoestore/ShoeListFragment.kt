@@ -33,6 +33,11 @@ class ShoeListFragment : Fragment() {
         preferences = MyPreferences(requireActivity())
         loginState = preferences.getLoginState()
 
+        val args = ShoeListFragmentArgs.fromBundle(requireArguments())
+        if (args.name != null) {
+            newShoe(args.name!!, args.company!!, args.size, args.description!!)
+        }
+
         binding.fab.setOnClickListener { view:View ->
             view.findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
         }
@@ -55,20 +60,20 @@ class ShoeListFragment : Fragment() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.login_menu, menu)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        super.onCreateOptionsMenu(menu, inflater)
+//        inflater.inflate(R.menu.login_menu, menu)
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        if (item.itemId == R.menu.login_menu) {
+//            preferences.setLoginState(false)
+//        }
+//        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+//                || super.onOptionsItemSelected(item)
+//    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.menu.login_menu) {
-            preferences.setLoginState(false)
-        }
-        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
-                || super.onOptionsItemSelected(item)
-    }
-
-    private fun newShoe(name: String, company: String, size: String, description: String) {
+    private fun newShoe(name: String, company: String, size: Int, description: String) {
         val linearLayout: LinearLayout = binding.shoeListingsContainer
         val view: View = layoutInflater.inflate(R.layout.shoe_list_item, null)
 
@@ -77,7 +82,7 @@ class ShoeListFragment : Fragment() {
         val companyView: TextView = view.findViewById(R.id.company)
         companyView.text = company
         val sizeTextView: TextView = view.findViewById(R.id.size)
-        sizeTextView.text = "$size size"
+        sizeTextView.text = "${size.toString()} size"
         val descriptionTextView: TextView = view.findViewById(R.id.description)
         descriptionTextView.text = description
 

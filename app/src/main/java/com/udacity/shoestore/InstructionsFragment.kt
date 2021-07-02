@@ -25,7 +25,7 @@ class InstructionsFragment : Fragment() {
 
         binding.continueButton.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                InstructionsFragmentDirections.actionInstructionsFragmentToShoeListFragment2()
+                InstructionsFragmentDirections.actionInstructionsFragmentToShoeListFragment2(null, null, 0, null)
             )
         )
 
