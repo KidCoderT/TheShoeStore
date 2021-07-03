@@ -29,31 +29,21 @@ class ShoeDetailsFragment : Fragment() {
 
         binding.fabCancel.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment(
-                    null,
-                    null,
-                    0,
-                    null
-                )
+                ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment("", "", 0, "")
             )
         )
 
         binding.fabContinue.setOnClickListener { view: View ->
             val shoeName: String = binding.nameTextField.text.toString()
             val companyName: String = binding.companyNameTextField.text.toString()
-            val shoeSize: Int = binding.shoeSizeNumberField.text.toString().toInt()
+            val shoeSize = binding.shoeSizeNumberField.text.toString()
             val shoeDescription: String = binding.descriptionTextField.text.toString()
 
-            when (shoeName.isNotBlank() && companyName.isNotBlank() && shoeSize != 0 && shoeDescription.isNotBlank()) {
+            when (shoeName.isNotBlank() && companyName.isNotBlank() && shoeSize.isNotEmpty() && shoeSize.toIntOrNull() != null && shoeDescription.isNotBlank()) {
                 true -> {
                     view.findNavController()
                         .navigate(
-                            ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment(
-                                shoeName,
-                                companyName,
-                                shoeSize,
-                                shoeDescription
-                            )
+                            ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment(shoeName, companyName, shoeSize.toInt(), shoeDescription)
                         )
                 }
                 false -> {

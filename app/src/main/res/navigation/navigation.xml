@@ -18,20 +18,17 @@
             android:id="@+id/action_shoeListFragment_to_shoeDetailsFragment"
             app:destination="@id/shoeDetailsFragment" />
         <argument
-            android:name="name"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="shoeName"
+            app:argType="string" />
         <argument
-            android:name="company"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="shoeCompany"
+            app:argType="string" />
         <argument
-            android:name="size"
+            android:name="shoeSize"
             app:argType="integer" />
         <argument
-            android:name="description"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="shoeDescription"
+            app:argType="string" />
     </fragment>
 
     <fragment

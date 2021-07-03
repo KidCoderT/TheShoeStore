@@ -34,15 +34,14 @@ class ShoeListFragment : Fragment() {
         loginState = preferences.getLoginState()
 
         val args = ShoeListFragmentArgs.fromBundle(requireArguments())
-        if (args.name != null) {
-            newShoe(args.name!!, args.company!!, args.size, args.description!!)
+        if (args.shoeName != "") {
+            newShoe(args.shoeName, args.shoeCompany, args.shoeSize, args.shoeDescription)
         }
 
         binding.fab.setOnClickListener { view:View ->
             view.findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
         }
 
-        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -59,19 +58,6 @@ class ShoeListFragment : Fragment() {
             }
         }
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//        inflater.inflate(R.menu.login_menu, menu)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if (item.itemId == R.menu.login_menu) {
-//            preferences.setLoginState(false)
-//        }
-//        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
-//                || super.onOptionsItemSelected(item)
-//    }
 
     private fun newShoe(name: String, company: String, size: Int, description: String) {
         val linearLayout: LinearLayout = binding.shoeListingsContainer
