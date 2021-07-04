@@ -29,7 +29,7 @@ class ShoeDetailsFragment : Fragment() {
 
         binding.fabCancel.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment("", "", 0, "")
+                ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment()
             )
         )
 
@@ -43,7 +43,7 @@ class ShoeDetailsFragment : Fragment() {
                 true -> {
                     view.findNavController()
                         .navigate(
-                            ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment(shoeName, companyName, shoeSize.toInt(), shoeDescription)
+                            ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment()
                         )
                 }
                 false -> {

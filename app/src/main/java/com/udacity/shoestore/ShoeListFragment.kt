@@ -33,11 +33,6 @@ class ShoeListFragment : Fragment() {
         preferences = MyPreferences(requireActivity())
         loginState = preferences.getLoginState()
 
-        val args = ShoeListFragmentArgs.fromBundle(requireArguments())
-        if (args.shoeName != "") {
-            newShoe(args.shoeName, args.shoeCompany, args.shoeSize, args.shoeDescription)
-        }
-
         binding.fab.setOnClickListener { view:View ->
             view.findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
         }
