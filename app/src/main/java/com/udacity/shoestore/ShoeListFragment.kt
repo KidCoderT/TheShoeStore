@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
@@ -15,6 +16,7 @@ class ShoeListFragment : Fragment() {
     private lateinit var binding: FragmentShoeListBinding
     lateinit var preferences: MyPreferences
     var loginState: Boolean = false
+    private lateinit var viewModel: ShoeListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +28,8 @@ class ShoeListFragment : Fragment() {
             container,
             false
         )
+
+        viewModel = ViewModelProvider(this).get(ShoeListViewModel::class.java)
 
         preferences = MyPreferences(requireActivity())
         loginState = preferences.getLoginState()
