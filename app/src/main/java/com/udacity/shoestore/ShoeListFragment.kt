@@ -33,9 +33,6 @@ class ShoeListFragment : Fragment() {
             false
         )
 
-        activityViewModel =
-            ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
-
         preferences = MyPreferences(requireActivity())
         loginState = preferences.getLoginState()
 
@@ -87,18 +84,5 @@ class ShoeListFragment : Fragment() {
         descriptionTextView.text = description
 
         linearLayout.addView(view)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        binding.shoeListingsContainer.removeAllViews()
-        activityViewModel.shoeListItemsData.value?.forEach { shoeItem: Shoe ->
-            createNewShoe(
-                shoeItem.name,
-                shoeItem.company,
-                shoeItem.size,
-                shoeItem.description
-            )
-        }
     }
 }
