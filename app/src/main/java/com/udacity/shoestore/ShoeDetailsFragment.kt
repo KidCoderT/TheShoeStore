@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.udacity.shoestore.databinding.FragmentLoginBinding
@@ -27,6 +28,9 @@ class ShoeDetailsFragment : Fragment() {
             false
         )
 
+        val activityViewModel =
+            ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
+
         binding.fabCancel.setOnClickListener(
             Navigation.createNavigateOnClickListener(
                 ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment()
@@ -41,6 +45,7 @@ class ShoeDetailsFragment : Fragment() {
 
             when (shoeName.isNotBlank() && companyName.isNotBlank() && shoeSize.isNotEmpty() && shoeSize.toIntOrNull() != null && shoeDescription.isNotBlank()) {
                 true -> {
+                    activityViewModel.addShoe(shoeName, companyName, shoeSize.toInt(), shoeDescription)
                     view.findNavController()
                         .navigate(
                             ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment()

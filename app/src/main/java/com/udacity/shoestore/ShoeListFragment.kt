@@ -6,17 +6,19 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
+import com.udacity.shoestore.models.Shoe
+
 
 class ShoeListFragment : Fragment() {
 
     private lateinit var binding: FragmentShoeListBinding
     lateinit var preferences: MyPreferences
     var loginState: Boolean = false
-    private lateinit var viewModel: ShoeListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,13 +31,30 @@ class ShoeListFragment : Fragment() {
             false
         )
 
-        viewModel = ViewModelProvider(this).get(ShoeListViewModel::class.java)
+        val activityViewModel =
+            ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
+
+        activityViewModel.shoeListItemsData.observe(
+            viewLifecycleOwner,
+            Observer { shoe: List<Shoe> ->
+                binding.shoeListingsContainer.removeAllViews()
+                for (shoeItem in shoe) {
+
+                    createNewShoe(
+                        shoeItem.name,
+                        shoeItem.company,
+                        shoeItem.size,
+                        shoeItem.description
+                    )
+                }
+            })
 
         preferences = MyPreferences(requireActivity())
         loginState = preferences.getLoginState()
 
-        binding.fab.setOnClickListener { view:View ->
-            view.findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
+        binding.fab.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(ShoeListFragmentDirections.actionShoeListFragmentToShoeDetailsFragment())
         }
 
         setHasOptionsMenu(true)
@@ -67,7 +86,7 @@ class ShoeListFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun newShoe(name: String, company: String, size: Int, description: String) {
+    private fun createNewShoe(name: String, company: String, size: Int, description: String) {
         val linearLayout: LinearLayout = binding.shoeListingsContainer
         val view: View = layoutInflater.inflate(R.layout.shoe_list_item, null)
 
