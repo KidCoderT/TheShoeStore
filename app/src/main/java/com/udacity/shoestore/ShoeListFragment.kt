@@ -1,6 +1,7 @@
 package com.udacity.shoestore
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -8,10 +9,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
 import com.udacity.shoestore.models.Shoe
+import timber.log.Timber
 
 
 class ShoeListFragment : Fragment() {
@@ -19,6 +20,7 @@ class ShoeListFragment : Fragment() {
     private lateinit var binding: FragmentShoeListBinding
     lateinit var preferences: MyPreferences
     var loginState: Boolean = false
+    private lateinit var activityViewModel: MainActivityViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,23 +33,8 @@ class ShoeListFragment : Fragment() {
             false
         )
 
-        val activityViewModel =
+        activityViewModel =
             ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
-
-        activityViewModel.shoeListItemsData.observe(
-            viewLifecycleOwner,
-            Observer { shoe: List<Shoe> ->
-                binding.shoeListingsContainer.removeAllViews()
-                for (shoeItem in shoe) {
-
-                    createNewShoe(
-                        shoeItem.name,
-                        shoeItem.company,
-                        shoeItem.size,
-                        shoeItem.description
-                    )
-                }
-            })
 
         preferences = MyPreferences(requireActivity())
         loginState = preferences.getLoginState()
@@ -100,5 +87,18 @@ class ShoeListFragment : Fragment() {
         descriptionTextView.text = description
 
         linearLayout.addView(view)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.shoeListingsContainer.removeAllViews()
+        activityViewModel.shoeListItemsData.value?.forEach { shoeItem: Shoe ->
+            createNewShoe(
+                shoeItem.name,
+                shoeItem.company,
+                shoeItem.size,
+                shoeItem.description
+            )
+        }
     }
 }
