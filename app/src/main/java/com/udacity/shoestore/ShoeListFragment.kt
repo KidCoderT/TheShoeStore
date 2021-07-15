@@ -1,7 +1,6 @@
 package com.udacity.shoestore
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -11,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
-import com.udacity.shoestore.models.Shoe
 
 
 class ShoeListFragment : Fragment() {
@@ -24,7 +22,7 @@ class ShoeListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_shoe_list,
@@ -35,10 +33,15 @@ class ShoeListFragment : Fragment() {
         preferences = MyPreferences(requireActivity())
         loginState = preferences.getLoginState()
 
-        sharedViewModel.shoeListItemsData.observe(viewLifecycleOwner, Observer {
+        sharedViewModel.shoeListItemsData.observe(viewLifecycleOwner, {
             binding.shoeListingsContainer.removeAllViews()
             for (shoeItem in it) {
                 createNewShoe(shoeItem.name, shoeItem.company, shoeItem.size, shoeItem.description)
+            }
+            if (binding.shoeListingsContainer.childCount == 0) {
+                binding.noShoesTextImageView.visibility = View.VISIBLE
+            } else {
+                binding.noShoesTextImageView.visibility = View.GONE
             }
         })
 
@@ -68,6 +71,12 @@ class ShoeListFragment : Fragment() {
                 view.findNavController()
                     .navigate(ShoeListFragmentDirections.actionShoeListFragmentToLoginFragment())
             }
+        }
+
+        if (binding.shoeListingsContainer.childCount == 0) {
+            binding.noShoesTextImageView.visibility = View.VISIBLE
+        } else {
+            binding.noShoesTextImageView.visibility = View.GONE
         }
     }
 

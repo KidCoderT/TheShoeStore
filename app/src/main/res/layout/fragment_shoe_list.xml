@@ -40,8 +40,9 @@
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="361dp"
-            android:layout_height="625dp"
+            android:layout_height="575dp"
             android:layout_marginTop="50dp"
+            android:layout_marginBottom="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,8 +52,7 @@
                 android:id="@+id/shoe_listings_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
         </ScrollView>
 
         <LinearLayout
@@ -72,7 +72,8 @@
                 android:id="@+id/no_shoes_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/no_shoes" />
+                android:src="@drawable/no_shoes"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/no_shoes_text"
@@ -83,7 +84,7 @@
                 android:layout_marginEnd="32dp"
                 android:text="There are now shoes create one for selling by clicking the floating action button"
                 android:textAlignment="center"
-                android:visibility="gone" />
+                android:visibility="visible" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
