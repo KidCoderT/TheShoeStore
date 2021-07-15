@@ -111,7 +111,7 @@
             android:id="@+id/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="18dp"
             android:text="New Shoe"
             android:textColor="#000000"
             android:textSize="24sp"
@@ -139,6 +139,47 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_text" />
+
+        <TextView
+            android:id="@+id/name_field_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Name:"
+            style="@style/field_title"
+            app:layout_constraintBottom_toTopOf="@+id/name_text_field"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/company_field_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Company:"
+            style="@style/field_title"
+            app:layout_constraintBottom_toTopOf="@+id/company_name_text_field"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/size_field_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="ShoeSize:"
+            style="@style/field_title"
+            app:layout_constraintBottom_toTopOf="@+id/shoe_size_number_field"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/description_field_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Description:"
+            style="@style/field_title"
+            app:layout_constraintBottom_toTopOf="@+id/description_text_field"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout"
@@ -34,7 +33,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:maxImageSize="60dp"
-            android:focusable="true" />
+            android:focusable="true"
+            android:contentDescription="@string/add_new_shoe_content_description" />
 
 
         <ScrollView
@@ -52,10 +52,10 @@
                 android:id="@+id/shoe_listings_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical" />
         </ScrollView>
 
-        <LinearLayout
+        <TextView
             android:id="@+id/no_shoes_text_image_view"
             android:layout_width="235dp"
             android:layout_height="194dp"
@@ -73,7 +73,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/no_shoes"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:contentDescription="@string/no_shoes_content_description" />
 
             <TextView
                 android:id="@+id/no_shoes_text"
@@ -82,10 +83,10 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="32dp"
-                android:text="There are now shoes create one for selling by clicking the floating action button"
+                android:text="@string/no_shoes_msg"
                 android:textAlignment="center"
                 android:visibility="visible" />
-        </LinearLayout>
+        </TextView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
