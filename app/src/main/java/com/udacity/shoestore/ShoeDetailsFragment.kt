@@ -14,7 +14,7 @@ import com.udacity.shoestore.databinding.FragmentShoeDetailsBinding
 class ShoeDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentShoeDetailsBinding
-    private val sharedViewModel by activityViewModels<SharedViewModel>()
+    private val sharedViewModel by activityViewModels<ViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +41,7 @@ class ShoeDetailsFragment : Fragment() {
 
             when (shoeName.isNotBlank() && companyName.isNotBlank() && shoeSize.isNotEmpty() && shoeSize.toIntOrNull() != null && shoeDescription.isNotBlank()) {
                 true -> {
-                    sharedViewModel.addShoe(shoeName, companyName, shoeSize.toInt(), shoeDescription)
+                    sharedViewModel.addShoe(shoeName, companyName, shoeSize, shoeDescription)
                     view.findNavController()
                         .navigate(
                             ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListFragment()

@@ -9,8 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
 import com.udacity.shoestore.models.Shoe
@@ -21,7 +19,7 @@ class ShoeListFragment : Fragment() {
     private lateinit var binding: FragmentShoeListBinding
     lateinit var preferences: MyPreferences
     var loginState: Boolean = false
-    private val sharedViewModel by activityViewModels<SharedViewModel>()
+    private val sharedViewModel by activityViewModels<ViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,9 +35,9 @@ class ShoeListFragment : Fragment() {
         preferences = MyPreferences(requireActivity())
         loginState = preferences.getLoginState()
 
-        sharedViewModel.shoeListItemsData.observe(viewLifecycleOwner, Observer { shoeListData: List<Shoe> ->
+        sharedViewModel.shoeListItemsData.observe(viewLifecycleOwner, Observer {
             binding.shoeListingsContainer.removeAllViews()
-            for (shoeItem in shoeListData) {
+            for (shoeItem in it) {
                 createNewShoe(shoeItem.name, shoeItem.company, shoeItem.size, shoeItem.description)
             }
         })
@@ -78,7 +76,7 @@ class ShoeListFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun createNewShoe(name: String, company: String, size: Int, description: String) {
+    private fun createNewShoe(name: String, company: String, size: String, description: String) {
         val linearLayout: LinearLayout = binding.shoeListingsContainer
         val view: View = layoutInflater.inflate(R.layout.shoe_list_item, null)
 
@@ -87,7 +85,7 @@ class ShoeListFragment : Fragment() {
         val companyView: TextView = view.findViewById(R.id.company)
         companyView.text = company
         val sizeTextView: TextView = view.findViewById(R.id.size)
-        sizeTextView.text = "${size.toString()} size"
+        sizeTextView.text = "$size size"
         val descriptionTextView: TextView = view.findViewById(R.id.description)
         descriptionTextView.text = description
 
