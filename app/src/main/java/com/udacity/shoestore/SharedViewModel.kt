@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.udacity.shoestore.models.Shoe
 
-class MainActivityViewModel: ViewModel() {
+class SharedViewModel: ViewModel() {
     private val _shoeListItemsData = MutableLiveData<MutableList<Shoe>>()
     val shoeListItemsData: LiveData<MutableList<Shoe>> get() = _shoeListItemsData
 

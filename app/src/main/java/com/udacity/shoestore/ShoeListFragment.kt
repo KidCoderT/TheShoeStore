@@ -7,12 +7,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
 import com.udacity.shoestore.models.Shoe
-import timber.log.Timber
 
 
 class ShoeListFragment : Fragment() {
@@ -20,7 +21,7 @@ class ShoeListFragment : Fragment() {
     private lateinit var binding: FragmentShoeListBinding
     lateinit var preferences: MyPreferences
     var loginState: Boolean = false
-    private lateinit var activityViewModel: MainActivityViewModel
+    private val sharedViewModel by activityViewModels<SharedViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +36,13 @@ class ShoeListFragment : Fragment() {
 
         preferences = MyPreferences(requireActivity())
         loginState = preferences.getLoginState()
+
+        sharedViewModel.shoeListItemsData.observe(viewLifecycleOwner, Observer { shoeListData: List<Shoe> ->
+            for (shoeItem in shoeListData) {
+                binding.shoeListingsContainer.removeAllViews()
+                createNewShoe(shoeItem.name, shoeItem.company, shoeItem.size, shoeItem.description)
+            }
+        })
 
         binding.fab.setOnClickListener { view: View ->
             view.findNavController()
