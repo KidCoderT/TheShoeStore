@@ -38,8 +38,8 @@ class ShoeListFragment : Fragment() {
         loginState = preferences.getLoginState()
 
         sharedViewModel.shoeListItemsData.observe(viewLifecycleOwner, Observer { shoeListData: List<Shoe> ->
+            binding.shoeListingsContainer.removeAllViews()
             for (shoeItem in shoeListData) {
-                binding.shoeListingsContainer.removeAllViews()
                 createNewShoe(shoeItem.name, shoeItem.company, shoeItem.size, shoeItem.description)
             }
         })
