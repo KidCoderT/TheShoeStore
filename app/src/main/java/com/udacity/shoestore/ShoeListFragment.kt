@@ -3,6 +3,7 @@ package com.udacity.shoestore
 import android.os.Bundle
 import android.view.*
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -87,18 +88,16 @@ class ShoeListFragment : Fragment() {
 
     private fun createNewShoe(name: String, company: String, size: String, description: String) {
         val linearLayout: LinearLayout = binding.shoeListingsContainer
-//        val view: View = layoutInflater.inflate(R.layout.shoe_list_item, null)
-        val view:View = DataBindingUtil.inflate(
-            layoutInflater,
-            R.layout.shoe_list_item,
-            container,
-            false
-        )
+        val view: View = layoutInflater.inflate(R.layout.shoe_list_item, null)
 
-        view.name.text = name
-        view.company.text = company
-        view.size.text = getString(R.string.size_text, size)
-        view.description.text = description
+        val nameView: TextView = view.findViewById(R.id.name)
+        nameView.text = name
+        val companyView: TextView = view.findViewById(R.id.company)
+        companyView.text = company
+        val sizeTextView: TextView = view.findViewById(R.id.size)
+        sizeTextView.text = getString(R.string.size_text, size)
+        val descriptionTextView: TextView = view.findViewById(R.id.description)
+        descriptionTextView.text = description
 
         linearLayout.addView(view)
     }
