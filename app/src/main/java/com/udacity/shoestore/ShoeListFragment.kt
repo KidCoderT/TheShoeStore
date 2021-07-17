@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
+import com.udacity.shoestore.models.Shoe
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.shoe_list_item.view.*
 
@@ -37,7 +38,14 @@ class ShoeListFragment : Fragment() {
         sharedViewModel.shoeListItemsData.observe(viewLifecycleOwner, {
             binding.shoeListingsContainer.removeAllViews()
             for (shoeItem in it) {
-                createNewShoe(shoeItem.name, shoeItem.company, shoeItem.size, shoeItem.description)
+                createNewShoe(shoeItem)
+                createNewShoe(shoeItem)
+                createNewShoe(shoeItem)
+                createNewShoe(shoeItem)
+                createNewShoe(shoeItem)
+                createNewShoe(shoeItem)
+                createNewShoe(shoeItem)
+                createNewShoe(shoeItem)
             }
             if (binding.shoeListingsContainer.childCount == 0) {
                 binding.noShoesTextImageView.visibility = View.VISIBLE
@@ -86,18 +94,18 @@ class ShoeListFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun createNewShoe(name: String, company: String, size: String, description: String) {
+    private fun createNewShoe(shoe: Shoe) {
         val linearLayout: LinearLayout = binding.shoeListingsContainer
         val view: View = layoutInflater.inflate(R.layout.shoe_list_item, null)
 
         val nameView: TextView = view.findViewById(R.id.name)
-        nameView.text = name
+        nameView.text = shoe.name
         val companyView: TextView = view.findViewById(R.id.company)
-        companyView.text = company
+        companyView.text = shoe.company
         val sizeTextView: TextView = view.findViewById(R.id.size)
-        sizeTextView.text = getString(R.string.size_text, size)
+        sizeTextView.text = getString(R.string.size_text, shoe.size)
         val descriptionTextView: TextView = view.findViewById(R.id.description)
-        descriptionTextView.text = description
+        descriptionTextView.text = shoe.description
 
         linearLayout.addView(view)
     }
