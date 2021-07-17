@@ -38,14 +38,7 @@ class ShoeListFragment : Fragment() {
         sharedViewModel.shoeListItemsData.observe(viewLifecycleOwner, {
             binding.shoeListingsContainer.removeAllViews()
             for (shoeItem in it) {
-                createNewShoe(shoeItem)
-                createNewShoe(shoeItem)
-                createNewShoe(shoeItem)
-                createNewShoe(shoeItem)
-                createNewShoe(shoeItem)
-                createNewShoe(shoeItem)
-                createNewShoe(shoeItem)
-                createNewShoe(shoeItem)
+                createNewShoe(shoeItem.name, shoeItem.company, shoeItem.size, shoeItem.description)
             }
             if (binding.shoeListingsContainer.childCount == 0) {
                 binding.noShoesTextImageView.visibility = View.VISIBLE
@@ -94,18 +87,17 @@ class ShoeListFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun createNewShoe(shoe: Shoe) {
+    private fun createNewShoe(name: String, company: String, size: String, description: String) {
         val linearLayout: LinearLayout = binding.shoeListingsContainer
         val view: View = layoutInflater.inflate(R.layout.shoe_list_item, null)
-
         val nameView: TextView = view.findViewById(R.id.name)
-        nameView.text = shoe.name
+        nameView.text = name
         val companyView: TextView = view.findViewById(R.id.company)
-        companyView.text = shoe.company
+        companyView.text = company
         val sizeTextView: TextView = view.findViewById(R.id.size)
-        sizeTextView.text = getString(R.string.size_text, shoe.size)
+        sizeTextView.text = getString(R.string.size_text, size)
         val descriptionTextView: TextView = view.findViewById(R.id.description)
-        descriptionTextView.text = shoe.description
+        descriptionTextView.text = description
 
         linearLayout.addView(view)
     }
