@@ -2,6 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--  This is the shoe List page .
+        This page uses a constraint layout because making this with
+        Linear layout would be very painful
+        1. There would multiple margins being used and it would still be
+           really hard or might I say impossible to align the button to the
+           bottom left in the linear layout
+        2. Its much easier to position with the constraint layout
+    -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout"
         android:layout_width="match_parent"
@@ -25,16 +34,16 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
-            android:clickable="true"
             android:background="@drawable/round_bg_dark"
             android:backgroundTint="@color/colorPrimaryDark"
+            android:clickable="true"
+            android:contentDescription="@string/add_new_shoe_content_description"
+            android:focusable="true"
             android:src="@drawable/ic_baseline_add_24"
             app:fabCustomSize="70dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:maxImageSize="60dp"
-            android:focusable="true"
-            android:contentDescription="@string/add_new_shoe_content_description" />
+            app:maxImageSize="60dp" />
 
 
         <ScrollView
@@ -72,9 +81,9 @@
                 android:id="@+id/no_shoes_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:contentDescription="@string/no_shoes_content_description"
                 android:src="@drawable/no_shoes"
-                android:visibility="visible"
-                android:contentDescription="@string/no_shoes_content_description" />
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/no_shoes_text"

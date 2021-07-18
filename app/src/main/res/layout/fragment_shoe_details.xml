@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--  This is the shoe detail page .
+        This page uses a constraint layout because making this with
+        Linear layout will be a terrible idea.
+        1. The fab buttons could not be positioned like this in a linear layout
+        2. Now if I change the position of the image all of the field auto align to fit nicely
+    -->
+
     <data>
 
         <variable
@@ -133,10 +140,11 @@
             android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="36dp"
             android:background="@drawable/round_bg"
             android:src="@drawable/new_shoes"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.511"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
