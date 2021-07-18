@@ -55,7 +55,7 @@
             app:destination="@id/shoeListFragment"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/slide_out_left"
-            app:popUpTo="@id/loginFragment"
+            app:popUpTo="@id/instructionsFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -65,6 +65,8 @@
         <action
             android:id="@+id/action_shoeDetailsFragment_to_shoeListFragment"
             app:destination="@id/shoeListFragment"
-            app:enterAnim="@anim/slide_in_left" />
+            app:enterAnim="@anim/slide_in_left"
+            app:popUpTo="@id/shoeDetailsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
